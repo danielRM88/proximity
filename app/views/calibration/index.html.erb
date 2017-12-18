@@ -1,0 +1,61 @@
+<header>
+</header>
+<section class="container my-5">
+  <h2>Your system needs calibration!</h2>
+  <p>This will only take a few minutes</p>
+  <br>
+
+  <section class="row">
+
+    <section class="col-sm-6 seated-container">
+      <div id="form" class="alert alert-primary">
+        <%= form_tag("/start_calibration", method: "GET") do %>
+
+          <div class="form-group">
+            <label for="algorithm">Algorithm</label>
+            <select class="form-control" name="algorithm">
+              <option value="LogisticRegression">Logistic Regression</option>
+              <option value="AverageSquare">Average Square</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="records">Number of samples per iteration</label>
+            <input type="number" name="records" class="form-control" value="<%=@calibration.records%>"/>
+          </div>
+
+          <div class="form-group">
+            <label for="records">Number of iterations</label>
+            <input type="number" class="form-control" name="iterations" value="<%=@calibration.iterations%>"/>
+          </div>
+
+          <p>Please clear away from the chair</p>
+          <input type="submit" value="Start!" class="btn btn-primary"/>
+          <a href="/" class="btn btn-danger">Cancel</a>
+        <% end %>
+      </div>
+    </section>
+  </section>
+
+  <p>Or if you already have the training data:</p>
+  <section class="row">
+
+    <section class="col-sm-6 seated-container">
+      <div id="form" class="alert alert-primary">
+        <%= form_tag({action: :retrain}, multipart: true) do %>
+          <div class="form-group">
+            <label for="algorithm">Algorithm</label>
+            <select class="form-control" name="algorithm">
+              <option value="LogisticRegression">Logistic Regression</option>
+              <option value="AverageSquare">Average Square</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <%= file_field_tag 'trainingFile' %>
+          </div>
+          <input type="submit" value="Train!" class="btn btn-primary"/>
+        <% end %>
+      </div>
+    </section>
+  </section>
+</section>

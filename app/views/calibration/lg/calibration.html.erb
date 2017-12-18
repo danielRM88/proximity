@@ -1,0 +1,82 @@
+<header>
+</header>
+<section class="container my-5">
+  <h2>Your system is being calibrated!</h2>
+  <p>Please wait and follow the instructions. It may take a few minutes</p>
+  <br>
+
+  <section class="row">
+    <section class="col-sm-6 seated-container">
+      <div id="form" class="alert alert-primary">
+        <% if @calibration.outcome %>
+          <p id="remainSeated">Please do not stand up</p>
+        <% else %>
+          <p id="clearAway">Please clear away from the chair</p>
+        <% end %>
+        <div id="resumeSitDown" style="display: none;">
+          <p>Please sit down on the chair</p>
+          <%= form_tag("/resume_calibration", method: "POST") do %>
+            <input type="submit" value="Resume" class="btn btn-primary"/>
+            <input type="hidden" name="outcome" value="true">
+          <% end %>
+        </div>
+
+        <div id="resumeStandUp" style="display: none;">
+          <p>Please stand up from the chair</p>
+          <%= form_tag("/resume_calibration", method: "POST") do %>
+            <input type="submit" value="Resume" class="btn btn-primary"/>
+            <input type="hidden" name="outcome" value="false">
+          <% end %>
+        </div>
+        <br>
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped progress-bar-animated" 
+               role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="<%=@calibration.records%>" style="width: 0%"></div>
+        </div>
+      </div>
+    </section>
+  </section>
+</section>
+
+<script>
+  var i = setInterval(fetchProgress, 1000);
+
+  function fetchProgress() {
+    $.ajax({
+    method: "GET",
+    url: (server + "/get_progress"),
+    dataType: "json",
+    async: false,
+    success: function(data, textStatus, xhr) {
+      valeur = data["progress"]
+      outcome = data["outcome"]
+      $('.progress-bar').css('width', valeur+'%').attr('aria-valuenow', valeur);
+
+      if (xhr.status == 240) {
+        clearInterval(i);
+        if (!outcome) {
+          $('#resumeStandUp').hide();
+          $('#clearAway').hide();
+          $('#resumeSitDown').show();
+        } else {
+          $('#resumeStandUp').show();
+          $('#remainSeated').hide();
+          $('#resumeSitDown').hide();
+        }
+      } else if(xhr.status == 241) {
+        clearInterval(i);
+        window.location.replace(server + "/end_calibration");
+      }
+    },
+    error: function(xhr, textStatus, errorThrown){
+        // clearInterval(tid);
+        // error = true;
+        // if(xhr.status == 500) {
+        //   window.location.replace(server + "/error");
+        // } else if(xhr.status == 400) {
+        //   window.location.replace(server + "/calibration");
+        // }
+      }
+    })
+  }
+</script>

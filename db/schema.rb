@@ -11,15 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171212013243) do
+ActiveRecord::Schema.define(version: 20171217125837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "calibrations", force: :cascade do |t|
+    t.boolean  "calibrated",        default: false
+    t.boolean  "ongoing",           default: false
+    t.integer  "records"
+    t.float    "result"
+    t.string   "algorithm_class"
+    t.boolean  "pause",             default: false
+    t.boolean  "outcome",           default: false
+    t.integer  "iterations",        default: 1
+    t.integer  "current_iteration", default: 1
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+  end
 
   create_table "rssis", force: :cascade do |t|
     t.integer  "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "training_data", force: :cascade do |t|
+    t.integer  "value"
+    t.boolean  "outcome",    default: false
+    t.integer  "iteration",  default: 1
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
 end

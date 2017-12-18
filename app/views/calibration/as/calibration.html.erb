@@ -1,0 +1,42 @@
+<p>Your System is Being Calibrated! </p>
+
+<p>Please Wait</p>
+
+<p id="clearAway">Please clear away from the chair</p>
+
+<div class="progress">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" 
+       role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="<%=@calibration.records%>" style="width: 0%"></div>
+</div>
+
+<script>
+  var i = setInterval(fetchProgress, 1000);
+
+  function fetchProgress() {
+    $.ajax({
+    method: "GET",
+    url: (server + "/get_progress"),
+    dataType: "json",
+    async: false,
+    success: function(data, textStatus, xhr) {
+      valeur = data["progress"]
+      outcome = data["outcome"]
+      $('.progress-bar').css('width', valeur+'%').attr('aria-valuenow', valeur);
+
+      if(xhr.status == 241) {
+        clearInterval(i);
+        window.location.replace(server + "/end_calibration");
+      }
+    },
+    error: function(xhr, textStatus, errorThrown){
+        // clearInterval(tid);
+        // error = true;
+        // if(xhr.status == 500) {
+        //   window.location.replace(server + "/error");
+        // } else if(xhr.status == 400) {
+        //   window.location.replace(server + "/calibration");
+        // }
+      }
+    })
+  }
+</script>

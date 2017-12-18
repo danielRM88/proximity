@@ -5,7 +5,22 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'rssi#index'
 
+  get 'get_last_values' => 'rssi#get_last_values'
   get 'register' => 'rssi#register'
+  get 'ongoing' => 'rssi#ongoing'
+
+  get 'calibration' => 'calibration#index'
+  get 'start_calibration' => 'calibration#start'
+
+  post 'resume_calibration' => 'calibration#resume'
+
+  get 'get_progress' => 'calibration#progress'
+
+  get 'end_calibration' => 'calibration#end'
+
+  post 'retrain' => 'calibration#retrain'
+
+  get 'error' => 'application#system_error'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,0 +1,32 @@
+/* 
+color-purple #8f6c7d
+color-beige #fbe8d8
+color-gray  #e5e5e5
+color-charcoal #434343
+color-nude #caa399
+*/
+
+header {
+	background-color: #caa399;
+	color: #fbe8d8;
+}
+
+header img {
+	width: 47%;
+}
+
+body {
+	color: #434343;
+}
+
+.seated-container
+{
+	margin: auto;
+}
+
+#seated {
+	height: 350px;
+	line-height: 350px;
+    white-space: nowrap;
+    text-align: center;
+}
