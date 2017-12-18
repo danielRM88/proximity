@@ -55,7 +55,6 @@ class CalibrationController < ApplicationController
       file.write(upload.read)
     end
 
-    byebug
     @calibration.update(algorithm_class: algorithm.to_s)
     @calibration.end_calibration
     redirect_to root_path
