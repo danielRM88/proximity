@@ -36,7 +36,11 @@ class LogisticRegression < Algorithm
       result = predict(glm.fit, data.frame(values = #{value}), type="response")
     ]
 
-    # puts "Probability: #{R.result}"
+    begin
+      puts "Probability: #{R.result}"
+    rescue
+      LogisticRegression.train
+    end
     
     return R.result > DESICION_BOUNDARY
   end

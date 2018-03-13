@@ -12,7 +12,7 @@ class RssiController < ApplicationController
       limit ||= 20
 
       offset = params[:offset]
-
+      
       # time_window = @calibration.get_time_window
       # # @rssi = Rssi.all.where("id < 4275")
       # # @rssi = Rssi.where("id >= 4275").order(id: :asc).offset(offset).limit(limit)

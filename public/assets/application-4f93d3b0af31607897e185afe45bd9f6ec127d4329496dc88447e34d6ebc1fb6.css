@@ -1,0 +1,49 @@
+/* 
+color-purple #8f6c7d
+color-beige #fbe8d8
+color-gray  #e5e5e5
+color-charcoal #434343
+color-nude #caa399
+*/
+
+
+header {
+	background-color: #caa399;
+	color: #fbe8d8;
+}
+
+header img {
+	width: 47%;
+}
+
+body {
+	color: #434343;
+}
+
+.seated-container
+{
+	margin: auto;
+}
+
+#seated {
+	height: 350px;
+	line-height: 350px;
+    white-space: nowrap;
+    text-align: center;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+
+ */
+
