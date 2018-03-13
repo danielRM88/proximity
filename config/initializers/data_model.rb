@@ -1,5 +1,6 @@
 require 'descriptive_statistics'
-require "rinruby"
+# require 'rootapp-rinruby'
+require 'rinruby'
 # if defined?(Rails::Server)
 #   if ENV['DATAMODEL'] == 'lg'
 #     # puts "Initialising and Training Logistic Regression Model"

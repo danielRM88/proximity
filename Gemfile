@@ -48,6 +48,7 @@ end
 gem 'pg'
 gem 'puma', '~> 2.15.3'
 gem 'rinruby'
+# gem 'rootapp-rinruby'
 gem 'awesome_print'
 
 gem 'descriptive_statistics'
