@@ -1,4 +1,4 @@
-require 'CSV'
+require 'csv'
 class TrainingData < ActiveRecord::Base
   def self.export path = "#{Rails.root}/training/training_data.csv"
     # file_name = "training_data.csv"
