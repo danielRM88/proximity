@@ -6,17 +6,46 @@
   <p>Use of BLE RSSI distortion to identify if someone is sitting down on a chair</p>
 
   <section class="row">
+  <!-- </section>
 
-    <section class="col-sm-3 seated-container">
+  <section class="row"> -->
+    <section class="col-sm-4 seated-container">
+      <div id="form" class="alert alert-primary">
+        <%= form_tag("/resume", method: "POST") do %>
+          <div class="form-group">
+            <label for="seated">Seated</label>
+            <input type="checkbox" class="form-control" name="seated" value="true" <%= @calibration.actual_seated ? "checked" : "" %>>
+          </div>
+          <div class="form-group">
+            <label for="gender">Gender</label>
+            <select class="form-control" name="gender">
+              <option value="Male" <%= @calibration.gender.present? ? (@calibration.gender == "Male" ? "selected" : "") : "" %>>Male</option>
+              <option value="Female" <%= @calibration.gender.present? ? (@calibration.gender == "Female" ? "selected" : "") : "" %>>Female</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="height">Height</label>
+            <input type="number" name="height" class="form-control" value="<%=@calibration.height%>"/>
+          </div>
+          <div class="form-group">
+            <label for="weight">Weight</label>
+            <input type="number" name="weight" class="form-control" value="<%=@calibration.weight%>"/>
+          </div>
+          <input type="submit" value="Resume!" class="btn btn-primary"/>
+          <a href="/pause" class="btn btn-danger">Pause</a>
+        <% end %>
+      </div>
+    </section>
+
+    <section class="col-sm-2 seated-container">
       <div id="seated" class="alert alert-danger" role="alert">
         NO
       </div>
     </section>
 
-    <section class="col-sm-9">
-      <section id="curve_chart" style="width: 900px; height: 500px"></section>        
+    <section class="col-sm-12 col-md-6">
+      <section id="curve_chart" style="width: 750px; height: 500px"></section>        
     </section>
-
   </section>
 
   <section class="row">

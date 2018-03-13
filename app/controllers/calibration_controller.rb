@@ -30,6 +30,7 @@ class CalibrationController < ApplicationController
   end
 
   def resume
+    byebug
     @calibration.resume_calibration
     if @calibration.algorithm == LogisticRegression
       view = "calibration/lg/calibration"
@@ -56,7 +57,7 @@ class CalibrationController < ApplicationController
     end
 
     @calibration.update(algorithm_class: algorithm.to_s)
-    @calibration.end_calibration
+    @calibration.end_calibration true
     redirect_to root_path
   end
 

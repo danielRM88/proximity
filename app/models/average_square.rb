@@ -8,17 +8,20 @@ class AverageSquare < Algorithm
     avg = 0
     value = 0
 
+    array = []
     csv_text = File.read("#{Rails.root}/training/training_data.csv")
     csv = CSV.parse(csv_text, :headers => true)
     cont = 1
     csv.each do |row|
+      array << row["values"].to_i
       value += row["values"].to_i
       cont += 1
     end
 
     avg = value / cont
     c = Calibration.last
-    c.result = avg
+    c.result = avg - (2*array.standard_deviation)
+
     c.save
   end
 
@@ -31,6 +34,7 @@ class AverageSquare < Algorithm
   end
 
   def self.produce_value array
+    v = array.last.value
     value = 0
     if array.length > 0
       array = array.map(&:value)
@@ -41,15 +45,15 @@ class AverageSquare < Algorithm
       value = (sorted[(len - 1) / 2] + sorted[len / 2]) / 2.0
     end
 
-    return value
+    return v
   end
 
   def self.predict value
     c = Calibration.last
     training_avg = c.result
 
-    result = (value - training_avg)
+    # result = (value - training_avg)
 
-    return result < DESICION_BOUNDARY
+    return value < training_avg
   end
 end

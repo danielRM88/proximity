@@ -30,12 +30,12 @@ class Calibration < ActiveRecord::Base
     Rssi.destroy_all
   end
 
-  def end_calibration
+  def end_calibration retrain = false
     self.calibrated = true
     self.ongoing = false
     # rssi = Rssi.all
     # self.result = rssi.average(:value)
-    TrainingData.export
+    TrainingData.export if !retrain
     algorithm.train
     self.save
   end

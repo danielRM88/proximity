@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get 'get_last_values' => 'rssi#get_last_values'
   get 'register' => 'rssi#register'
   get 'ongoing' => 'rssi#ongoing'
+  get 'pause' => 'rssi#pause'
+  post 'resume' => 'rssi#resume'
 
   get 'calibration' => 'calibration#index'
   get 'start_calibration' => 'calibration#start'
@@ -21,6 +23,8 @@ Rails.application.routes.draw do
   post 'retrain' => 'calibration#retrain'
 
   get 'error' => 'application#system_error'
+
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

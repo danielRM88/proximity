@@ -16,8 +16,8 @@ var limit = 20;
 var offset = 0;
 var error = false;
 
-var server = "http://localhost:3000";
-// var server = "http://172.20.10.3:3000";
+// var server = "http://localhost:3000";
+var server = "http://172.20.10.3:3000";
 
 // Call to start timer and initialise points for chart
 function initPoints() {
@@ -92,11 +92,11 @@ function drawChart() {
   var data = google.visualization.arrayToDataTable(points);
 
   var options = {
-    title: 'RSSI Distortion',
+    title: 'RSSI Signal',
     curveType: 'function',
     animation: {"startup": true},
     legend: { position: 'bottom' },
-    'vAxis': {'title': 'RSSI',
+    'vAxis': {'title': '',
                'minValue': -85, 
                'maxValue': -35},
   };

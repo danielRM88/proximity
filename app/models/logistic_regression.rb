@@ -3,7 +3,8 @@ class LogisticRegression < Algorithm
 
   def self.train
     R.eval %Q[
-      # data = read.csv("/Users/danielrosato/Documents/Politecnico di Milano/3rd Semester/Pervasive Systems/PervasiveDataCleanedChair2.csv")
+      # data = read.csv("/Users/danielrosato/Documents/Politecnico\ di\ Milano/3rd\ Semester/Pervasive\ Systems/sitting_sensor/training/past_data/training_data_with_outliers.csv")
+      # data = read.csv("/Users/danielrosato/Desktop/PredictionData.csv")
       data = read.csv("#{Rails.root}/training/training_data.csv")
       attach(data)
       max = max(id)

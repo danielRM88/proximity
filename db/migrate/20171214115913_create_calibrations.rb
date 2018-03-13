@@ -10,6 +10,10 @@ class CreateCalibrations < ActiveRecord::Migration
       t.boolean :outcome, default: false
       t.integer :iterations, default: 1
       t.integer :current_iteration, default: 1
+      t.boolean :actual_seated, default: false
+      t.string :gender
+      t.float :height
+      t.float :weight
       t.timestamps null: false
     end
   end

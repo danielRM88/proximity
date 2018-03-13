@@ -1,3 +1,4 @@
+require 'descriptive_statistics'
 if defined?(Rails::Server)
   if ENV['DATAMODEL'] == 'lg'
     require "rinruby"
