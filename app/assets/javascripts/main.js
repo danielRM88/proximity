@@ -17,7 +17,7 @@ var offset = 0;
 var error = false;
 
 // var server = "http://127.0.0.1:3000";
-var server = "http://sittingsensor.herokuapp.com:80";
+var server = "https://sittingsensor.herokuapp.com";
 
 // Call to start timer and initialise points for chart
 function initPoints() {
