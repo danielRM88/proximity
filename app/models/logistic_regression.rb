@@ -39,7 +39,10 @@ class LogisticRegression < Algorithm
     begin
       puts "Probability: #{R.result}"
     rescue
+      calibration = Calibration.last
+      calibration.pause_calibration
       LogisticRegression.train
+      calibration.resume_calibration
     end
     
     return R.result > DESICION_BOUNDARY

@@ -30,7 +30,6 @@ class CalibrationController < ApplicationController
   end
 
   def resume
-    byebug
     @calibration.resume_calibration
     if @calibration.algorithm == LogisticRegression
       view = "calibration/lg/calibration"
