@@ -4,6 +4,11 @@
 
   <h1>Is the person seated?</h1>
   <p>Use of BLE RSSI distortion to identify if someone is sitting down on a chair</p>
+  <% if @calibration.pause %>
+    <p><b>The system is paused</b></p>
+  <% else %>
+    <p><b>The system is receiving new measurements</b></p>
+  <% end %>
 
   <section class="row">
   <!-- </section>
